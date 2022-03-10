@@ -1,36 +1,21 @@
+#ifndef texte_H
+#define texte_H
 #include <SDL/SDL.h>
-#include "texte.h"
 #include <SDL/SDL_image.h>
-void initText1(Text *A)
-{
-A->position.x=877.61;
-A->position.y=72;
-A->textColor.r=233;
-A->textColor.g=229;
-A->textColor.b=213;
-A->font =  TTF_OpenFont("BodoniMT.ttf",99);
-}
-void initText2(Text *A)
-{
-A->position.x=1088.72;
-A->position.y=236.67;
-A->textColor.r=233;
-A->textColor.g=229;
-A->textColor.b=213;
-A->font =  TTF_OpenFont("BodoniMT.ttf",99);
-}
+#include <SDL/SDL_ttf.h>
+typedef struct{
+		SDL_Rect position;
+		TTF_Font *font;
+		SDL_Surface * surfaceTexte;
+		SDL_Color textColor;
+		char texte[50];
+}Text;
+void initText1(Text *A);
+void initText2(Text *A);
+void freeText(Text A);
+void displayText1(Text t,SDL_Surface *screen);
+void displayText2(Text t,SDL_Surface *screen); 
+  
 
-void freeText(Text A)
-{
-SDL_FreeSurface(A.surfaceTexte);
-}
-void displayText1(Text t,SDL_Surface *screen)
-{
-t.surfaceTexte= TTF_RenderText_Solid(t.font, "ross",t.textColor);
-SDL_BlitSurface(t.surfaceTexte, NULL, screen,&t.position);
-} 																																																					 
-void displayText2(Text t,SDL_Surface *screen)
-{
-t.surfaceTexte= TTF_RenderText_Solid(t.font, "rip",t.textColor);
-SDL_BlitSurface(t.surfaceTexte, NULL, screen,&t.position);
-} 																																																					 
+#endif
+																													 
